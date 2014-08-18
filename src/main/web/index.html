@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello</title>
+    <script src="js/aes/aes.js"></script>
+    <script src="js/aes/aes-ctr.js"></script>
+</head>
+<body>
+Hello world
+<script>
+    var password = 'sortKey';
+    var plaintext = 'long input to see what is happening there';
+    var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
+    var origtext = Aes.Ctr.decrypt(ciphertext, password, 256);
+    document.writeln("<br>Encrypted: " + ciphertext);
+    document.writeln("<br>Decrypted: " + origtext);
+</script>
+</body>
+</html>
