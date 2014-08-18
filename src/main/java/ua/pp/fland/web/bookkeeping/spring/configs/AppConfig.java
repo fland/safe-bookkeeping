@@ -14,4 +14,5 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"ua.pp.fland.web.bookkeeping.web.controllers",
         "ua.pp.fland.web.bookkeeping.spring.configs"})
 public class AppConfig {
+
 }
