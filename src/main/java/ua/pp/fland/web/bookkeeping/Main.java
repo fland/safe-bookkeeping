@@ -17,6 +17,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        LOG.debug("debug: Hello world!");
+        LOG.debug("Hello world!");
     }
 }
