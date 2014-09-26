@@ -19,7 +19,7 @@ public class Record {
     @Id
     private String id;
 
-    private String decs;
+    private String description;
 
     public Record() {
     }
@@ -32,12 +32,12 @@ public class Record {
         this.id = id;
     }
 
-    public String getDecs() {
-        return decs;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecs(String decs) {
-        this.decs = decs;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Record {
 
         Record record = (Record) o;
 
-        if (decs != null ? !decs.equals(record.decs) : record.decs != null) return false;
+        if (description != null ? !description.equals(record.description) : record.description != null) return false;
         if (id != null ? !id.equals(record.id) : record.id != null) return false;
 
         return true;
@@ -56,7 +56,15 @@ public class Record {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (decs != null ? decs.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -37,7 +37,7 @@ public class RecordDAOTest {
         final long recordsCountToInsert = 47;
         for (int i = 0; i < recordsCountToInsert; i++) {
             Record expectedRecord = new Record();
-            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            expectedRecord.setDescription("some desc " + new Date() + " count " + i);
             recordDAO.save(expectedRecord);
         }
         Assert.assertEquals("Records count after insert: ", recordsCountToInsert, recordDAO.countAll());
@@ -49,7 +49,7 @@ public class RecordDAOTest {
         final long recordsCountToInsert = 100;
         for (int i = 0; i < recordsCountToInsert; i++) {
             Record expectedRecord = new Record();
-            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            expectedRecord.setDescription("some desc " + new Date() + " count " + i);
             recordDAO.save(expectedRecord);
         }
         Assert.assertEquals("Records count after insert: ", recordsCountToInsert, recordDAO.countAll());
@@ -60,7 +60,7 @@ public class RecordDAOTest {
     @Test
     public void testInsert() {
         Record expectedRecord = new Record();
-        expectedRecord.setDecs("some desc " + new Date());
+        expectedRecord.setDescription("some desc " + new Date());
 
         recordDAO.save(expectedRecord);
 
@@ -73,7 +73,7 @@ public class RecordDAOTest {
     @Test
     public void testSeveralInserts() {
         Record expectedRecord = new Record();
-        expectedRecord.setDecs("some desc " + new Date());
+        expectedRecord.setDescription("some desc " + new Date());
         recordDAO.save(expectedRecord);
         Record actualRecord = recordDAO.getById(expectedRecord.getId());
         Assert.assertEquals(expectedRecord, actualRecord);
@@ -81,7 +81,7 @@ public class RecordDAOTest {
 
         for (int i = 1; i < 100; i++) {
             expectedRecord = new Record();
-            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            expectedRecord.setDescription("some desc " + new Date() + " count " + i);
             recordDAO.save(expectedRecord);
             actualRecord = recordDAO.getById(expectedRecord.getId());
             Assert.assertEquals(expectedRecord, actualRecord);

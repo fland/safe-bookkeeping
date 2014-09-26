@@ -1,4 +1,4 @@
-package ua.pp.fland.web.bookkeeping.spring.configs;
+package ua.pp.fland.web.bookkeeping.spring.configs.db;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;

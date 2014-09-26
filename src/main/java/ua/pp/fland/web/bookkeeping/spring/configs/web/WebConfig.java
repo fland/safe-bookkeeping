@@ -1,4 +1,4 @@
-package ua.pp.fland.web.bookkeeping.spring.configs;
+package ua.pp.fland.web.bookkeeping.spring.configs.web;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

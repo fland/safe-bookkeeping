@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import ua.pp.fland.web.bookkeeping.storage.model.Record;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: maxim
@@ -29,6 +31,10 @@ public class RecordDAO {
 
     public Record getById(String id) {
         return mongoOperations.findById(id, Record.class);
+    }
+
+    public List<Record> getAll() {
+        return mongoOperations.findAll(Record.class);
     }
 
     public long countAll() {

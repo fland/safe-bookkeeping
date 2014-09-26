@@ -1,9 +1,14 @@
 package ua.pp.fland.web.bookkeeping.web.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ua.pp.fland.web.bookkeeping.storage.dao.RecordDAO;
+import ua.pp.fland.web.bookkeeping.storage.model.Record;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,8 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hello")
 public class HelloController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{name}")
+    @Autowired
+    private RecordDAO recordDAO;
+
+    @RequestMapping(method = RequestMethod.GET, value = "/say/{name}")
     public String sayHello(@PathVariable("name") String name) {
         return name + " from the server привет";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/add")
+    public String add() {
+        Record record = new Record();
+        record.setDescription("Value. Date: " + new Date());
+        recordDAO.save(record);
+        return "Done. Decs: " + record.getDescription();
     }
 }
