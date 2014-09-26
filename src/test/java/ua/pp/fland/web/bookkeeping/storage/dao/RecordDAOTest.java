@@ -1,5 +1,6 @@
 package ua.pp.fland.web.bookkeeping.storage.dao;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ua.pp.fland.web.bookkeeping.spring.configs.DBTestConfig;
 import ua.pp.fland.web.bookkeeping.storage.model.Record;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,9 +33,33 @@ public class RecordDAOTest {
 
     @Test
     public void testInsert() {
-        Record record = new Record();
-        record.setDecs("some desc");
+        Record expectedRecord = new Record();
+        expectedRecord.setDecs("some desc " + new Date());
 
-        recordDAO.save(record);
+        recordDAO.save(expectedRecord);
+
+        Record actualRecord = recordDAO.getById(expectedRecord.getId());
+
+        Assert.assertEquals(expectedRecord, actualRecord);
+        Assert.assertEquals("Records count: ", 1l, recordDAO.countAll());
+    }
+
+    @Test
+    public void testSeveralInserts() {
+        Record expectedRecord = new Record();
+        expectedRecord.setDecs("some desc " + new Date());
+        recordDAO.save(expectedRecord);
+        Record actualRecord = recordDAO.getById(expectedRecord.getId());
+        Assert.assertEquals(expectedRecord, actualRecord);
+        Assert.assertEquals("Records count: ", 1l, recordDAO.countAll());
+
+        for (int i = 1; i < 100; i++) {
+            expectedRecord = new Record();
+            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            recordDAO.save(expectedRecord);
+            actualRecord = recordDAO.getById(expectedRecord.getId());
+            Assert.assertEquals(expectedRecord, actualRecord);
+            Assert.assertEquals("Records count: ", (i + 1), recordDAO.countAll());
+        }
     }
 }

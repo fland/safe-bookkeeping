@@ -2,6 +2,7 @@ package ua.pp.fland.web.bookkeeping.storage.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import ua.pp.fland.web.bookkeeping.storage.model.Record;
 
@@ -24,5 +25,13 @@ public class RecordDAO {
 
     public void deleteAll() {
         mongoOperations.dropCollection(Record.class);
+    }
+
+    public Record getById(String id) {
+        return mongoOperations.findById(id, Record.class);
+    }
+
+    public long countAll() {
+        return mongoOperations.count(new Query(), Record.class);
     }
 }

@@ -39,4 +39,24 @@ public class Record {
     public void setDecs(String decs) {
         this.decs = decs;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Record record = (Record) o;
+
+        if (decs != null ? !decs.equals(record.decs) : record.decs != null) return false;
+        if (id != null ? !id.equals(record.id) : record.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (decs != null ? decs.hashCode() : 0);
+        return result;
+    }
 }
