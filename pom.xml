@@ -133,4 +133,33 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>0.32</version>
+                <configuration>
+                    <targetClasses>
+                        <param>ua.pp.fland.web.bookkeeping.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>ua.pp.fland.web.bookkeeping.*</param>
+                    </targetTests>
+                    <failWhenNoMutations>false</failWhenNoMutations>
+                    <timeoutFactor>2</timeoutFactor>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                        <phase>integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

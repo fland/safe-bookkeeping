@@ -32,6 +32,32 @@ public class RecordDAOTest {
     }
 
     @Test
+    public void testCount() {
+        Assert.assertEquals("Records count before test: ", 0, recordDAO.countAll());
+        final long recordsCountToInsert = 47;
+        for (int i = 0; i < recordsCountToInsert; i++) {
+            Record expectedRecord = new Record();
+            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            recordDAO.save(expectedRecord);
+        }
+        Assert.assertEquals("Records count after insert: ", recordsCountToInsert, recordDAO.countAll());
+    }
+
+    @Test
+    public void testDeleteAll() {
+        Assert.assertEquals("Records count before test: ", 0, recordDAO.countAll());
+        final long recordsCountToInsert = 100;
+        for (int i = 0; i < recordsCountToInsert; i++) {
+            Record expectedRecord = new Record();
+            expectedRecord.setDecs("some desc " + new Date() + " count " + i);
+            recordDAO.save(expectedRecord);
+        }
+        Assert.assertEquals("Records count after insert: ", recordsCountToInsert, recordDAO.countAll());
+        recordDAO.deleteAll();
+        Assert.assertEquals("Records count after delete all: ", 0, recordDAO.countAll());
+    }
+
+    @Test
     public void testInsert() {
         Record expectedRecord = new Record();
         expectedRecord.setDecs("some desc " + new Date());
