@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@ComponentScan(basePackages = {"ua.pp.fland.web.bookkeeping.web.controllers",
+@ComponentScan(basePackages = {"ua.pp.fland.web.bookkeeping.web.controllers", "ua.pp.fland.web.bookkeeping.storage.dao",
         "ua.pp.fland.web.bookkeeping.spring.configs"})
 public class AppConfig {
 
