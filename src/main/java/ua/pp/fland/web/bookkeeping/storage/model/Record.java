@@ -1,5 +1,8 @@
 package ua.pp.fland.web.bookkeeping.storage.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,32 +15,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @Document(collection = Record.COLLECTION_NAME)
+@ToString(includeFieldNames = true)
 public class Record {
 
     public static final String COLLECTION_NAME = "records";
 
     @Id
+    @Setter
+    @Getter
     private String id;
 
+    @Getter
+    @Setter
     private String description;
 
     public Record() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
@@ -60,11 +52,4 @@ public class Record {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Record{" +
-                "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

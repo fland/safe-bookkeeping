@@ -50,17 +50,15 @@ public class RecordsController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getJSON/{id}")
-    public
     @ResponseBody
-    Record getJSONById(@PathVariable("id") String id) {
+    public Record getJSONById(@PathVariable("id") String id) {
         return recordDAO.getById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/add")
-    public
+    @RequestMapping(method = RequestMethod.POST, value = "/save")
     @ResponseBody
-    Record add(@RequestBody Record record) {
-        log.debug("Adding: " + record);
+    public Record save(@RequestBody Record record) {
+        log.debug("Saving: " + record);
 
         recordDAO.save(record);
 
