@@ -40,4 +40,10 @@ public class RecordDAO {
     public long countAll() {
         return mongoOperations.count(new Query(), Record.class);
     }
+
+    /*public List<Record> getByYear(int year){
+        Query query = new Query(Criteria.where("date.year").is(year));
+        query.
+        mongoOperations.find()
+    }*/
 }

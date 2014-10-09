@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.pp.fland.web.bookkeeping.storage.dao.RecordDAO;
 import ua.pp.fland.web.bookkeeping.storage.model.Record;
 
+import java.time.LocalDate;
 import java.util.Date;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,7 +35,14 @@ public class HelloController {
     public String add() {
         Record record = new Record();
         record.setDescription("Value. Date: " + new Date());
+        Record.Date date = new Record.Date();
+        date.setYear(2012);
+        date.setMonth(6);
+        date.setDay(13);
+        record.setDate(date);
         recordDAO.save(record);
+        LocalDate temp = LocalDate.now();
+        temp.getYear();
         return "Done. Decs: " + record.getDescription();
     }
 }

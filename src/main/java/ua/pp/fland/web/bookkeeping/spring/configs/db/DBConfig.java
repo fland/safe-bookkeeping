@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.net.UnknownHostException;
 
@@ -17,6 +18,7 @@ import java.net.UnknownHostException;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
+@EnableMongoRepositories("ua.pp.fland.web.bookkeeping.storage.dao")
 @ComponentScan(basePackages = "ua.pp.fland.web.bookkeeping.storage.dao")
 public class DBConfig {
 
@@ -29,4 +31,5 @@ public class DBConfig {
     public MongoTemplate mongoTemplate() throws UnknownHostException {
         return new MongoTemplate(mongo(), "bookkeeping");
     }
+
 }

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ua.pp.fland.web.bookkeeping.storage.dao.RecordDAO;
+import ua.pp.fland.web.bookkeeping.storage.dao.RecordRepository;
 import ua.pp.fland.web.bookkeeping.storage.model.Record;
 
 import java.util.List;
@@ -26,11 +27,16 @@ public class RecordsController {
     @Autowired
     RecordDAO recordDAO;
 
+    @Autowired
+    RecordRepository recordRepository;
+
     @RequestMapping(method = RequestMethod.GET, value = "/getAll")
     public String getAll() {
         log.debug("Fetching all records...");
 
-        List<Record> records = recordDAO.getAll();
+        List<Record> records = recordRepository.findAll();
+
+//        List<Record> records = recordDAO.getAll();
 
         StringJoiner joiner = new StringJoiner("<br>");
         for (Record record : records) {

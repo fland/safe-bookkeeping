@@ -29,6 +29,10 @@ public class Record {
     @Setter
     private String description;
 
+    @Getter
+    @Setter
+    private Date date;
+
     public Record() {
     }
 
@@ -50,6 +54,22 @@ public class Record {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @ToString(includeFieldNames = true)
+    public static class Date {
+
+        @Getter
+        @Setter
+        private int year;
+
+        @Getter
+        @Setter
+        private int month;
+
+        @Getter
+        @Setter
+        private int day;
     }
 
 }
