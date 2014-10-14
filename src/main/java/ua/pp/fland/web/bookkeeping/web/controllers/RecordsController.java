@@ -36,8 +36,6 @@ public class RecordsController {
 
         List<Record> records = recordRepository.findAll();
 
-//        List<Record> records = recordDAO.getAll();
-
         StringJoiner joiner = new StringJoiner("<br>");
         for (Record record : records) {
             joiner.add(record.toString());
@@ -50,15 +48,38 @@ public class RecordsController {
     public String getById(@PathVariable("id") String id) {
         log.debug("Fetching record by id: " + id);
 
-        Record record = recordDAO.getById(id);
+        Record record = recordRepository.findOne(id);
 
         return record.toString();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/get/year")
+    public List<Record> findByYear(@RequestParam int year) {
+        log.debug("Getting records for year: " + year);
+
+        return recordRepository.findByDateYear(year);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/get/date")
+    public List<Record> findByYear(@RequestParam int year, @RequestParam int month, @RequestParam int day) {
+        log.debug("Getting records for year: " + year + " month: " + month + " day: " + day);
+
+        Record.Date date = new Record.Date(year, month, day);
+
+        return recordRepository.findByDate(date);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/get/yearMonth")
+    public List<Record> findByYearMonth(@RequestParam int year, @RequestParam int month) {
+        log.debug("Getting records for year: " + year + " month: " + month);
+
+        return recordRepository.findByDateYearAndDateMonth(year, month);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getJSON/{id}")
     @ResponseBody
     public Record getJSONById(@PathVariable("id") String id) {
-        return recordDAO.getById(id);
+        return recordRepository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
@@ -66,7 +87,7 @@ public class RecordsController {
     public Record save(@RequestBody Record record) {
         log.debug("Saving: " + record);
 
-        recordDAO.save(record);
+        recordRepository.save(record);
 
         return record;
     }
